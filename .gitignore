@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# remote: remote repository.
+# fatal: repository 'https://github.com/AntonioErdeljac/next-netflix-tutorial.git/' not found
+
 # dependencies
 /node_modules
 /.pnp
