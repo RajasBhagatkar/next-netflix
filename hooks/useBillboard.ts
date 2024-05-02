@@ -1,12 +1,22 @@
 import useSwr from 'swr'
 import fetcher from '@/libs/fetcher';
+import axios from '@/pages/api/axios/axios';
+import { useState } from 'react';
 
-const useBillboard = () => {
-  const { data, error, isLoading } = useSwr('/api/random', fetcher, { 
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-   });
+const useBillboard = async() => {
+  const [data, setData] = useState({});
+  const [error, setError] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+
+  try {
+    const response = await axios('/api/random');
+    setIsLoading(false);
+    setData(response.data)
+  } catch (error) {
+    console.log(error)
+    setError(error);
+  }
+
   return {
     data,
     error,
