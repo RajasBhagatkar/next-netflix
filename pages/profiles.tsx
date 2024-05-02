@@ -19,14 +19,14 @@ interface UserCardProps {
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/auth',
-        permanent: false,
-      }
-    }
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: '/auth',
+  //       permanent: false,
+  //     }
+  //   }
+  // }
 
   return {
     props: {}
@@ -45,7 +45,7 @@ const UserCard: React.FC<UserCardProps> = ({ name }) => {
    </div>
   );
 }
-
+// profiles page will be show which user to select after succesfully login 
 const App = () => {
   const router = useRouter();
   const { data: currentUser } = useCurrentUser();

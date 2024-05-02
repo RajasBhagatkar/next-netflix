@@ -1,6 +1,7 @@
 import useSwr from 'swr'
 import fetcher from '@/libs/fetcher';
 
+// this will get the movies by their id
 const useMovie = (id?: string) => {
   const { data, error, isLoading } = useSwr(id ? `/api/movies/${id}` : null, fetcher, {
     revalidateIfStale: false,

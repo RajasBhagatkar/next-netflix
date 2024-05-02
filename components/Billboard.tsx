@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
 import PlayButton from '@/components/PlayButton';
@@ -8,6 +8,15 @@ import useInfoModalStore from '@/hooks/useInfoModalStore';
 const Billboard: React.FC = () => {
   const { openModal } = useInfoModalStore();
   const { data } = useBillboard();
+  // const data = {
+    // "id": "12193918239812938192",
+    // "title":"Big Buck Bunny",
+    //   "description":"Three rodents amuse themselves by harassing creatures of the forest. However, when they mess with a bunny, he decides to teach them a lesson.",
+    //   "videoUrl":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    //   "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/commons/7/70/Big.Buck.Bunny.-.Opening.Screen.png",
+    //   "genre":"Comedy",
+    //   "duration":"10 minutes"
+  // }
 
   const handleOpenModal = useCallback(() => {
     openModal(data?.id);
@@ -23,7 +32,7 @@ const Billboard: React.FC = () => {
           {data?.title}
         </p>
         <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
-          {data?.description}
+        {data?.description}
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
           <PlayButton movieId={data?.id} />

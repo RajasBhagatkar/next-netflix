@@ -7,6 +7,7 @@ export interface ModalStoreInterface {
   closeModal: () => void;
 }
 
+// this will open the video modal on click and will have the movie id on which the api call should be made to fetch the video
 const useInfoModalStore = create<ModalStoreInterface>((set) => ({
   movieId: undefined,
   isOpen: false,

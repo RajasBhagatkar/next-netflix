@@ -1,24 +1,24 @@
-import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { NextPageContext } from 'next';
 import { getSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import axios from './api/axios/axios'
 
 import Input from '@/components/Input';
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
-
-  if (session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      }
-    }
-  }
+// if session found then re-direct to the "/"
+  // if (session) {
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //       permanent: false,
+  //     }
+  //   }
+  // }
 
   return {
     props: {}
@@ -40,12 +40,14 @@ const Auth = () => {
 
   const login = useCallback(async () => {
     try {
-      await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
-        callbackUrl: '/'
-      });
+      // await signIn('credentials', {
+      //   email,
+      //   password,
+      //   redirect: false,
+      //   callbackUrl: '/'
+      // });
+      
+
 
       router.push('/profiles');
     } catch (error) {
@@ -55,7 +57,7 @@ const Auth = () => {
 
   const register = useCallback(async () => {
     try {
-      await axios.post('/api/register', {
+      await axios.post('/register', {
         email,
         name,
         password
@@ -63,7 +65,7 @@ const Auth = () => {
 
       login();
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
   }, [email, name, password, login]);
 
